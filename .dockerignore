@@ -1,0 +1,11 @@
+__pycache__
+*.pyc
+.git
+.env
+.venv
+venv
+*.md
+run_samples.py
+debug_*.py
+BUP_CSE_FEST_2026_Preli_Public_Sample_Cases.json
+extract_pdf_*.py

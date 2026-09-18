@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.pdf
+extract_pdf_*.py
+_demo_req.json
