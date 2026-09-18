@@ -163,13 +163,24 @@ so an "80% reduction" is `factor = 0.2`):
 
 ## Docker fallback (judge reproducibility)
 
+The image is self-contained (API + web UI + public samples + regression runner),
+with no baked-in credentials.
+
 ```bash
+# 1. Build (no credentials baked in)
 docker build -t gridwise .
+
+# 2. Run the service
 docker run --rm -p 8000:8000 -e OPENAI_API_KEY=sk-... gridwise
-curl -s http://localhost:8000/health    # -> {"status":"ok"}
+curl -s http://localhost:8000/health        # -> {"status":"ok"}
+
+# 3. Run the public-sample regression inside the same image (key-free)
+docker run --rm -e GRIDWISE_LLM_MODE=rules gridwise python run_samples.py
+#    -> 10 cases, 10 passed.  (expected)
 ```
 
-The image has no baked-in credentials; the key must be supplied at run time.
+The key must be supplied at run time via `-e OPENAI_API_KEY=...`; it is never in
+the image.
 
 ## Deploy so judges can call it (step by step)
 

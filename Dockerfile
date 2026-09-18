@@ -11,6 +11,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY main.py models.py interpreter.py guardrails.py optimizer.py ./
 COPY static ./static
+COPY BUP_CSE_FEST_2026_Preli_Public_Sample_Cases.json ./
+COPY run_samples.py ./
 
 EXPOSE 8000
 
